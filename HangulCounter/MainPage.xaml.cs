@@ -100,10 +100,30 @@ public partial class MainPage : ContentPage
     }
 
     string countDigits = "";
-    void Announce_Clicked(System.Object sender, System.EventArgs e)
+    async void Announce_Clicked(System.Object sender, System.EventArgs e)
     {
         // convert numbers to korean
         countDigits = count;
         Count = Int32.Parse(count).ToWords(new CultureInfo("ko-KR"));
+
+        await TextToSpeech.Default.SpeakAsync($"{Count}{Counter}", await GetLocaleOptions());
+
+        await Task.Delay(500);
+
+        Count = countDigits;
+        countDigits = "";
+    }
+
+    async private Task<SpeechOptions> GetLocaleOptions()
+    {
+        IEnumerable<Locale> locales = await TextToSpeech.Default.GetLocalesAsync();
+
+        SpeechOptions options = new SpeechOptions()
+        {
+            Pitch = 1f,   // 0.0 - 2.0
+            Volume = 0.75f, // 0.0 - 1.0
+            Locale = locales.FirstOrDefault(x=> x.Language == "ko-KR")
+        };
+        return options;
     }
 } 
