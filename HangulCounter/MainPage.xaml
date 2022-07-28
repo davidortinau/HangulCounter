@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="HangulCounter.MainPage"
+             Shell.NavBarIsVisible="False"
+             >
+
+    <Grid RowDefinitions="1*,2*" ColumnDefinitions="*,*,Auto" Margin="10" ColumnSpacing="10" RowSpacing="10">
+        <!-- display -->
+        <Border Background="{StaticResource PrimaryBrush}"
+                Stroke="{StaticResource PrimaryBrush}"
+                StrokeThickness="1"
+                Grid.ColumnSpan="3">
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="20"/>
+            </Border.StrokeShape>
+            <Grid ColumnDefinitions="2*,1*" Margin="20" ColumnSpacing="20">
+                <Label Text="{Binding Count}" HorizontalTextAlignment="End" VerticalOptions="Center" TextColor="{StaticResource Gray100}" FontSize="128" MaxLines="1"/>
+                <Label Grid.Column="1" Text="{Binding Counter, FallbackValue=?}"
+                       VerticalOptions="Center" HorizontalOptions="Center" TextColor="{StaticResource Gray100}" FontSize="128" MaxLines="1"/>
+                <BoxView Color="{StaticResource Gray100}" WidthRequest="1" Grid.Column="1" Margin="0,0,0,0"
+                         HorizontalOptions="Start"
+                         />
+            </Grid>
+
+        </Border>
+
+        <!-- num pad -->
+        <Grid
+            Grid.Row="1" Grid.Column="0"
+            ColumnSpacing="10" RowSpacing="10"
+            ColumnDefinitions="*,*,*" RowDefinitions="*,*,*,*">
+            <Button Text="7" Clicked="Number_Clicked"/>
+            <Button Text="8" Grid.Column="1" Clicked="Number_Clicked"/>
+            <Button Text="9" Grid.Column="2" Clicked="Number_Clicked"/>
+            <Button Text="4" Grid.Row="1" Clicked="Number_Clicked"/>
+            <Button Text="5" Grid.Row="1" Grid.Column="1" Clicked="Number_Clicked"/>
+            <Button Text="6" Grid.Row="1" Grid.Column="2" Clicked="Number_Clicked"/>
+            <Button Text="1" Grid.Row="2" Clicked="Number_Clicked"/>
+            <Button Text="2" Grid.Row="2" Grid.Column="1" Clicked="Number_Clicked"/>
+            <Button Text="3" Grid.Row="2" Grid.Column="2" Clicked="Number_Clicked"/>
+            <Button Text="-" Grid.Row="3"/>
+            <Button Text="0" Grid.Row="3" Grid.Column="1" Clicked="Number_Clicked"/>
+            <Button Text="." Grid.Row="3" Grid.Column="2"/>
+        </Grid>
+
+        <!-- counters -->
+        <Grid x:Name="CountersContainer"
+            Grid.Row="1" Grid.Column="1"
+            ColumnSpacing="10" RowSpacing="10"
+            RowDefinitions="*,*,*,*"
+              ColumnDefinitions="*,*,*,*">
+            <Grid.Resources>
+                <Style TargetType="RadioButton">
+                    <Setter Property="ControlTemplate" Value="{StaticResource ButtonRadio}"/>
+                </Style>
+
+            </Grid.Resources>
+            
+        </Grid>
+
+        <!-- action btns -->
+        <Grid RowDefinitions="*,*,*,*" Grid.Row="1" Grid.Column="2" ColumnSpacing="10" RowSpacing="10">
+            <Grid.Resources>
+                <Style TargetType="Button">
+                    <Setter Property="Background" Value="{StaticResource Gray400Brush}"/>
+                    <Setter Property="TextColor" Value="{StaticResource White}"/>
+                </Style>
+
+            </Grid.Resources>
+            <Button Grid.Row="0" Text="C" Clicked="Clear_Clicked"/>
+            <Button Grid.Row="1" Text="-"/>
+            <Button Grid.Row="2" ImageSource="play.png" Clicked="Play_Clicked"/>
+            <Button Grid.Row="3" ImageSource="announce.png" Clicked="Announce_Clicked"/>
+        </Grid>
+    </Grid>
+
+</ContentPage>
+
