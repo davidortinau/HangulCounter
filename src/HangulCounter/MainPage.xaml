@@ -7,21 +7,72 @@
 
     <Grid RowDefinitions="1*,2*" ColumnDefinitions="*,*,Auto" Margin="10" ColumnSpacing="10" RowSpacing="10">
         <!-- display -->
-        <Border Background="{StaticResource PrimaryBrush}"
+        <Border x:Name="Display"
+                Background="{StaticResource PrimaryBrush}"
                 Stroke="{StaticResource PrimaryBrush}"
                 StrokeThickness="1"
                 Grid.ColumnSpan="3">
             <Border.StrokeShape>
                 <RoundRectangle CornerRadius="20"/>
             </Border.StrokeShape>
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup>
+                    <VisualState Name="Counter">
+                        <VisualState.Setters>
+                            <Setter TargetName="CountLbl"
+                                    Property="Label.IsVisible"
+                                    Value="True"/>
+                            <Setter TargetName="CounterLbl"
+                                    Property="Label.IsVisible"
+                                    Value="True"/>
+                            <Setter TargetName="Divider"
+                                    Property="BoxView.IsVisible"
+                                    Value="True"/>
+                            <Setter TargetName="TimeLbl"
+                                    Property="Label.IsVisible"
+                                    Value="False"/>
+                        </VisualState.Setters>
+                    </VisualState>
+                    <VisualState Name="Time">
+                        <VisualState.Setters>
+                            <Setter TargetName="CountLbl"
+                                    Property="Label.IsVisible"
+                                    Value="False"/>
+                            <Setter TargetName="CounterLbl"
+                                    Property="Label.IsVisible"
+                                    Value="False"/>
+                            <Setter TargetName="Divider"
+                                    Property="BoxView.IsVisible"
+                                    Value="False"/>
+                            <Setter TargetName="TimeLbl"
+                                    Property="Label.IsVisible"
+                                    Value="True"/>
+                        </VisualState.Setters>
+                    </VisualState>
+
+                </VisualStateGroup>
+
+            </VisualStateManager.VisualStateGroups>
             <Grid ColumnDefinitions="2*,1*" Margin="20" ColumnSpacing="20">
-                <Label Text="{Binding Count}" HorizontalTextAlignment="End" VerticalOptions="Center" TextColor="{StaticResource Gray100}" FontSize="128" MaxLines="1"/>
-                <Label Grid.Column="1" Text="{Binding Counter, FallbackValue=?}"
+                <Label
+                    x:Name="TimeLbl"
+                    IsVisible="False"
+                    Grid.ColumnSpan="2"
+                    Text="{Binding Count}" HorizontalTextAlignment="Start" VerticalOptions="Center" TextColor="{StaticResource Gray100}" FontSize="128" MaxLines="1"/>
+                <Label
+                    x:Name="CountLbl"
+                    Text="{Binding Count}" HorizontalTextAlignment="End" VerticalOptions="Center" TextColor="{StaticResource Gray100}" FontSize="128" MaxLines="1"/>
+                <Label
+                    x:Name="CounterLbl"
+                    Grid.Column="1" Text="{Binding Counter, FallbackValue=?}"
                        VerticalOptions="Center" HorizontalOptions="Center" TextColor="{StaticResource Gray100}" FontSize="128" MaxLines="1"/>
-                <BoxView Color="{StaticResource Gray100}" WidthRequest="1" Grid.Column="1" Margin="0,0,0,0"
+                <BoxView
+                    x:Name="Divider"
+                    Color="{StaticResource Gray100}" WidthRequest="1" Grid.Column="1" Margin="0,0,0,0"
                          HorizontalOptions="Start"
                          />
             </Grid>
+
 
         </Border>
 
@@ -49,16 +100,16 @@
             Grid.Row="1" Grid.Column="1"
             ColumnSpacing="10" RowSpacing="10"
             RowDefinitions="*,*,*,*"
-              ColumnDefinitions="*,*,*,*"
-              RadioButtonGroup.GroupName="CountersGroup"
-              >
+            ColumnDefinitions="*,*,*,*"
+            RadioButtonGroup.GroupName="CountersGroup"
+            RadioButtonGroup.SelectedValue="{Binding SelectedCounter}">
             <Grid.Resources>
                 <Style TargetType="RadioButton">
                     <Setter Property="ControlTemplate" Value="{StaticResource ButtonRadio}"/>
                 </Style>
 
             </Grid.Resources>
-            
+
         </Grid>
 
         <!-- action btns -->

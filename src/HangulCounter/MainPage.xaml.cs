@@ -1,4 +1,5 @@
 ﻿using System.Globalization;
+using System.Linq;
 using HangulCounter.Models;
 using Humanizer;
 
@@ -6,6 +7,17 @@ namespace HangulCounter;
 
 public partial class MainPage : ContentPage
 {
+    private Counter selectedCounter;
+
+    public Counter SelectedCounter
+    {
+        get => selectedCounter; set
+        {
+            selectedCounter = value;
+            OnPropertyChanged();
+        }
+    }
+
     private string count;
 
     public string Count
@@ -89,14 +101,20 @@ public partial class MainPage : ContentPage
 
     void Clear_Clicked(System.Object sender, System.EventArgs e)
     {
+        
+        //RadioButtonGroup.SetSelectedValue(CountersContainer, null);
+        RadioButton rb = CountersContainer.Children[0] as RadioButton;
+        rb.IsChecked = true;
+        rb.IsChecked = false;
+
         Count = "";
         Counter = "";
+        SelectedCounter = null;
     }
 
     void OnCounters_Clicked(System.Object sender, System.EventArgs e)
     {
         Button btn = sender as Button;
-        //var counter = AppModel.Counters.Find(x => x.Icon == btn.ImageSource);
         Counter = btn.CommandParameter.ToString();
     }
 
@@ -134,6 +152,8 @@ public partial class MainPage : ContentPage
 
     async void Clock_Clicked(System.Object sender, System.EventArgs e)
     {
+        VisualStateManager.GoToState(Display, "Time");
+
         // convert numbers to korean
         countDigits = count;
         string kTime = GetHangulTime(DateTime.Now);
@@ -145,6 +165,7 @@ public partial class MainPage : ContentPage
 
         Count = countDigits;
         countDigits = "";
+        VisualStateManager.GoToState(Display, "Counter");
     }
 
     string GetHangulTime(DateTime d)
