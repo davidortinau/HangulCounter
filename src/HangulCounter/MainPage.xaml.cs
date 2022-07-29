@@ -41,6 +41,7 @@ public partial class MainPage : ContentPage
         var colNeeded = AppModel.Counters.Count / 4;
         var row = 0;
         var col = 0;
+        var last = AppModel.Counters.Last();
         foreach (var item in AppModel.Counters)
         {
             var b = new RadioButton { Content = item.Icon, Value = item };//ControlTemplate = ((ControlTemplate)App.Current.Resources["ButtonRadio"])
@@ -55,9 +56,12 @@ public partial class MainPage : ContentPage
             {
                 row = 0;
                 col++;
+                if(!item.Equals(last))
+                    CountersContainer.ColumnDefinitions = GetColDefs(col + 1);
             }
 
-            CountersContainer.ColumnDefinitions = GetColDefs(col+1);
+            
+            
         }
     }
 
@@ -86,6 +90,7 @@ public partial class MainPage : ContentPage
     void Clear_Clicked(System.Object sender, System.EventArgs e)
     {
         Count = "";
+        Counter = "";
     }
 
     void OnCounters_Clicked(System.Object sender, System.EventArgs e)
@@ -125,5 +130,29 @@ public partial class MainPage : ContentPage
             Locale = locales.FirstOrDefault(x=> x.Language == "ko-KR")
         };
         return options;
+    }
+
+    async void Clock_Clicked(System.Object sender, System.EventArgs e)
+    {
+        // convert numbers to korean
+        countDigits = count;
+        string kTime = GetHangulTime(DateTime.Now);
+        Count = kTime;
+
+        await TextToSpeech.Default.SpeakAsync(kTime, await GetLocaleOptions());
+
+        await Task.Delay(2000);
+
+        Count = countDigits;
+        countDigits = "";
+    }
+
+    string GetHangulTime(DateTime d)
+    {
+        string hangulString = string.Empty;
+
+        hangulString = $"{(d.Hour % 12).ToWords(new CultureInfo("ko-KR"))} 시 {d.Minute.ToWords(new CultureInfo("ko-KR"))} 분";
+
+        return hangulString;
     }
 } 

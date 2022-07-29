@@ -19,8 +19,23 @@ namespace HangulCounter.Models
             new Counter{ LabelEnglish = "Slices", LabelKorean = "조각", Icon = "slices.png" },
             new Counter{ LabelEnglish = "Things", LabelKorean = "개", Icon = "things.png" },
             new Counter{ LabelEnglish = "Weeks", LabelKorean = "주일", Icon = "weeks.png" },
-            new Counter{ LabelEnglish = "Years", LabelKorean = "년", Icon = "years.png" }
+            new Counter{ LabelEnglish = "Years", LabelKorean = "년", Icon = "years.png" },
+            new Counter{ LabelEnglish = "Shoes", LabelKorean = "켤레", Icon = "shoes.png" },
+            new Counter{ LabelEnglish = "Trees", LabelKorean = "그루", Icon = "trees.png" },
+            new Counter{ LabelEnglish = "Places", LabelKorean = "군데", Icon = "places.png"},
+            new Counter{ LabelEnglish = "Floors", LabelKorean = "층", Icon = "floors.png"},
+            new Counter{ LabelEnglish = "Won", LabelKorean = "원", Icon = "won.png"},
+            new Counter{ LabelEnglish = "Age", LabelKorean = "살", Icon = "age.png"},
+            new Counter{ LabelEnglish = "Kinds", LabelKorean = "가지", Icon = "kinds.png"},
+            new Counter{ LabelEnglish = "Hours Duration", LabelKorean = "시간", Icon = "hours.png"},
+            new Counter{ LabelEnglish = "Bowls", LabelKorean = "그릇", Icon = "bowls.png"}
         };
-	}
+
+        // Game questions/prompts
+        // 몇 살이에요? How old are you?
+        // 몇 년생이에요? When were you born?
+        // 서른 살이에요. I'm 30 years old.
+
+    }
 }
 

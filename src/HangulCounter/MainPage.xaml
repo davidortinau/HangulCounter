@@ -49,7 +49,9 @@
             Grid.Row="1" Grid.Column="1"
             ColumnSpacing="10" RowSpacing="10"
             RowDefinitions="*,*,*,*"
-              ColumnDefinitions="*,*,*,*">
+              ColumnDefinitions="*,*,*,*"
+              RadioButtonGroup.GroupName="CountersGroup"
+              >
             <Grid.Resources>
                 <Style TargetType="RadioButton">
                     <Setter Property="ControlTemplate" Value="{StaticResource ButtonRadio}"/>
@@ -69,7 +71,7 @@
 
             </Grid.Resources>
             <Button Grid.Row="0" Text="C" Clicked="Clear_Clicked"/>
-            <Button Grid.Row="1" Text="-"/>
+            <Button Grid.Row="1" ImageSource="clock.png" Clicked="Clock_Clicked"/>
             <Button Grid.Row="2" ImageSource="play.png" Clicked="Play_Clicked"/>
             <Button Grid.Row="3" ImageSource="announce.png" Clicked="Announce_Clicked"/>
         </Grid>
