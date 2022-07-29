@@ -125,7 +125,7 @@ public partial class MainPage : ContentPage
 
         SpeechOptions options = new SpeechOptions()
         {
-            Pitch = 1f,   // 0.0 - 2.0
+            Pitch = 0.5f,   // 0.0 - 2.0
             Volume = 0.75f, // 0.0 - 1.0
             Locale = locales.FirstOrDefault(x=> x.Language == "ko-KR")
         };
@@ -151,7 +151,8 @@ public partial class MainPage : ContentPage
     {
         string hangulString = string.Empty;
 
-        hangulString = $"{(d.Hour % 12).ToWords(new CultureInfo("ko-KR"))} 시 {d.Minute.ToWords(new CultureInfo("ko-KR"))} 분";
+        // hours should be Native, minutes are Sino
+        hangulString = $"{AppModel.Hours[(d.Hour % 12)]} 시 {d.Minute.ToWords(new CultureInfo("ko-KR"))} 분";
 
         return hangulString;
     }

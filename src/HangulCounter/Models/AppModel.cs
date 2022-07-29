@@ -31,6 +31,30 @@ namespace HangulCounter.Models
             new Counter{ LabelEnglish = "Bowls", LabelKorean = "그릇", Icon = "bowls.png"}
         };
 
+        public static readonly Dictionary<long, string> Hours = new Dictionary<long, string>
+        {
+            {0, "" },
+            {1, ""},
+            {2, "두"},
+            {3, "세"},
+            {4, "네"},
+            {5, "다섯"},
+            {6, "여섯"},
+            {7, "일곱"},
+            {8, "여덟"},
+            {9, "아홉"},
+            {10, "열"},
+            {11, "열한"},
+            {12, "열두"},
+            {13, "열세"},
+            {14, "열네"},
+            {15, "열다섯"},
+            {16, "열여섯"},
+            {17, "열일곱"},
+            {18, "열여덟"},
+            {19, "열아홉"}
+        };
+
         // Game questions/prompts
         // 몇 살이에요? How old are you?
         // 몇 년생이에요? When were you born?
