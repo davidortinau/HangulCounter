@@ -173,7 +173,7 @@ public partial class MainPage : ContentPage
         string hangulString = string.Empty;
 
         // hours should be Native, minutes are Sino
-        hangulString = $"{AppModel.Hours[(d.Hour % 12)]} 시 {d.Minute.ToWords(new CultureInfo("ko-KR"))} 분";
+        hangulString = $"{AppModel.NativeNumbers[(d.Hour % 12)]} 시 {d.Minute.ToWords(new CultureInfo("ko-KR"))} 분";
 
         return hangulString;
     }

@@ -31,7 +31,7 @@ namespace HangulCounter.Models
             new Counter{ LabelEnglish = "Bowls", LabelKorean = "그릇", Icon = "bowls.png"}
         };
 
-        public static readonly Dictionary<long, string> Hours = new Dictionary<long, string>
+        public static readonly Dictionary<long, string> NativeNumbers = new Dictionary<long, string>
         {
             {0, "" },
             {1, ""},
@@ -52,7 +52,15 @@ namespace HangulCounter.Models
             {16, "열여섯"},
             {17, "열일곱"},
             {18, "열여덟"},
-            {19, "열아홉"}
+            {19, "열아홉"},
+            {20, "스물"},
+            {30, "서른"},
+            {40, "마흔"},
+            {50, "쉰"},
+            {60, "예순"},
+            {70, "일흔"},
+            {80, "여든"},
+            {90, "아흔"}
         };
 
         // Game questions/prompts
