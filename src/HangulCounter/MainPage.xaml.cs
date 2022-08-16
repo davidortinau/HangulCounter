@@ -127,7 +127,14 @@ public partial class MainPage : ContentPage
     {
         // convert numbers to korean
         countDigits = count;
-        Count = Int32.Parse(count).ToWords(new CultureInfo("ko-KR"));
+        if (selectedCounter.IsNative)
+        {
+            Count = AppModel.ToNative(Int32.Parse(count));
+        }
+        else
+        {
+            Count = Int32.Parse(count).ToWords(new CultureInfo("ko-KR"));
+        }
 
         await TextToSpeech.Default.SpeakAsync($"{Count}{Counter}", await GetLocaleOptions());
 

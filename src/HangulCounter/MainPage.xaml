@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:mct="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Class="HangulCounter.MainPage"
              Shell.NavBarIsVisible="False"
              >
@@ -119,10 +120,13 @@
                     <Setter Property="Background" Value="{StaticResource Gray400Brush}"/>
                     <Setter Property="TextColor" Value="{StaticResource White}"/>
                 </Style>
-
             </Grid.Resources>
             <Button Grid.Row="0" Text="C" Clicked="Clear_Clicked"/>
-            <Button Grid.Row="1" ImageSource="clock.png" Clicked="Clock_Clicked"/>
+            <Button Grid.Row="1" Clicked="Clock_Clicked" ImageSource="clock.png">
+                <Button.Behaviors>
+                    <mct:IconTintColorBehavior TintColor="White"/>
+                </Button.Behaviors>
+            </Button>
             <Button Grid.Row="2" ImageSource="play.png" Clicked="Play_Clicked"/>
             <Button Grid.Row="3" ImageSource="announce.png" Clicked="Announce_Clicked"/>
         </Grid>

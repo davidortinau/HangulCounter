@@ -25,7 +25,7 @@ namespace HangulCounter.Models
             new Counter{ LabelEnglish = "Places", LabelKorean = "군데", Icon = "places.png"},
             new Counter{ LabelEnglish = "Floors", LabelKorean = "층", Icon = "floors.png"},
             new Counter{ LabelEnglish = "Won", LabelKorean = "원", Icon = "won.png"},
-            new Counter{ LabelEnglish = "Age", LabelKorean = "살", Icon = "age.png"},
+            new Counter{ LabelEnglish = "Age", LabelKorean = "살", Icon = "age.png", IsNative = true},
             new Counter{ LabelEnglish = "Kinds", LabelKorean = "가지", Icon = "kinds.png"},
             new Counter{ LabelEnglish = "Hours Duration", LabelKorean = "시간", Icon = "hours.png"},
             new Counter{ LabelEnglish = "Bowls", LabelKorean = "그릇", Icon = "bowls.png"}
@@ -62,6 +62,25 @@ namespace HangulCounter.Models
             {80, "여든"},
             {90, "아흔"}
         };
+
+        public static string ToNative(int num)
+        {
+            if(num < 20)
+            {
+                return NativeNumbers[num];
+            }
+            else
+            {
+                var tens = GetPlace(num, 10);
+                var ones = GetPlace(num, 1);
+                return $"{NativeNumbers[tens]}{NativeNumbers[ones]}";
+            }
+        }
+
+        public static int GetPlace(int value, int place)
+        {
+            return (value % (place * 10)) - (value % place);
+        }
 
         // Game questions/prompts
         // 몇 살이에요? How old are you?

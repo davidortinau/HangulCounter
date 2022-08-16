@@ -6,6 +6,7 @@ namespace HangulCounter.Models
 		public string LabelEnglish { get; set; }
 		public string LabelKorean { get; set; }
 		public string Icon { get; set; }
+		public bool IsNative { get; set; }
 
 		public Counter()
 		{
